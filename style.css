@@ -10,6 +10,7 @@ body {
     font-family: 'Poppins', sans-serif;
     padding: 0 1rem;
     margin: 0;
+    height: 100vh;
 }
 
 header {
@@ -40,23 +41,18 @@ header {
 main {
     display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.table-container {
-    width: 100%;
-    overflow-x: scroll;
-}
 
 table {
     margin: 0;
     width: 100%;
     border: 1px solid black;
-    
 }
 
-tr {
-    
-}
 #tab-cabecalho td {
     width: 10rem;
     height: 3rem;
@@ -90,5 +86,17 @@ td {
     height: 3rem;
     text-align: center;
     font-weight: bold;
+
+}
+
+/* Insercao de codigo */
+.inserir-container {
+    
+
+    background-color: aqua;
+    width: 20rem;
+    height: 6rem;
+
+    border-radius: 1rem;
 
 }
