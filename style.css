@@ -53,7 +53,7 @@ main {
 
 .table-container {
     max-width: 100%;
-    overflow: scroll;
+    overflow-x: scroll;
     display: flex;
 }
 
@@ -67,10 +67,11 @@ main {
 }
 
 #tab-cabecalho th {
+    max-width: 100%;
     width: 20rem;
     height: 3rem;
     text-align: center;
-    
+
 }
 #tab-cabecalho th:first-child {
     border-bottom: 1px solid black;

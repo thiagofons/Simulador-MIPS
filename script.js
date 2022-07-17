@@ -7,7 +7,6 @@ const bancoReg = document.getElementById("banco-reg");
 const memoria = document.getElementById("memoria");
 
 const diagrama = document.getElementById("diagrama");
-const cabecalho = document.getElementById("tab-cabecalho")
 
 window.onload = () => {
     carregarBancoRegistradores();
@@ -145,7 +144,8 @@ function carregarDiagrama() {
     let linhaAtual = 0;
 
     // Carregar o cabecalho do diagrama
-    diagrama.insertRow(0).outerHTML = `<th>instrução</th>`;
+    const cabecalho = document.getElementById("tab-cabecalho");
+    cabecalho.innerHTML = `<th>instrução</th>`;
     for(let i = 1; i < numeroInstrucoes + 1; i++) {
         cabecalho.innerHTML += `<th>${i}</th>`;
     }
@@ -256,16 +256,32 @@ function checkNaoVazio(arr) {
 }
 
 function geraLinhas() {
+    const cabecalho = document.getElementById("tab-cabecalho");
+    
+    for(i = 1; i < 5; i++) {
+        cabecalho.innerHTML += `<th>${i}</th>`;
+    }
+
     for(i = 0; i < textoCodigo.length; i++) {
+        cabecalho.innerHTML += `<th>${i + 5}</th>`
         tamanhoTabela = diagrama.rows.length
-        diagrama.insertRow(tamanhoTabela).outerHTML = `<tr class="tab-linha instrucao">
-        <td class="nome-instrucao" id = "linha${i}">${textoCodigo[i]}</td>
-        <td id = if${i}>if</td>
-        <td id = id${i}>id</td>
-        <td id = ex${i}>ex</td>
-        <td id = mem${i}>mem</td>
-        <td id = wb${i}>wb</td>
-        </tr>`;
+
+        let inicio = `
+            <tr class="tab-linha instrucao">
+            <td class="nome-instrucao" id = "linha${i}">${textoCodigo[i]}</td>`;
+
+        for(let espaco = 0; espaco < i; espaco++) {
+            inicio += `<td></td>`;
+        }
+        inicio += `
+            <td id = if${i}>if</td>
+            <td id = id${i}>id</td>
+            <td id = ex${i}>ex</td>
+            <td id = mem${i}>mem</td>
+            <td id = wb${i}>wb</td>
+            </tr>`;
+
+        diagrama.insertRow(tamanhoTabela).outerHTML = inicio;
     }
 }
 
