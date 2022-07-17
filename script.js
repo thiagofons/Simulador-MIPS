@@ -51,7 +51,7 @@ window.onload = () => {
 const numeroInstrucoes = 10;
 
 const formularioCodigo = document.querySelector(".inserir-container");
-let textoCodigo;
+let textoCodigo = "";
 
 const instrucao = ["IF" , "ID", "EX", "MEM", "WB"];
 const instrucoes = [
@@ -70,8 +70,9 @@ const instrucoes = [
     "sw",
     "sub"
 ];
-const memoriaDados = [];
-const bancoRegistradores = [];
+let labels = {};
+let memoriaDados = [];
+let bancoRegistradores = [];
 
 // Logica
 
@@ -82,7 +83,28 @@ inserirCodigo.addEventListener("click", () => {
 
 function submit() {
     textoCodigo = document.getElementById("codigo").value.split("\n");
+    textoCodigo = processaLinhas(textoCodigo);
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
 }
 
+//separa cada linha em array
+function processaLinhas(linhas) {
+    for(i = 0; i < linhas.length; i++) {
+        linhas[i] = linhas[i].replace(", ", ","); //remove espaço pós virgula
+        linhas[i] = linhas[i].toLowerCase();
+        linhas[i] = linhas[i].replace(":", " ");
+        linhas[i] = linhas[i].replace(",", " "); //substitui "," por " " para fazer apenas um split posteriormente
+        linhas[i] = linhas[i].replace("  ", " "); //remove espaço duplo, caso houver.
+        linhas[i] = linhas[i].split();
+    }
+    return linhas;
+}
+
+function leLabel() {
+    for(i = 0; i < textoCodigo.length; i++) {
+        if(!(textoCodigo[i][0] in instrucoes)) {
+            //insere a label (linha i+1)
+        }
+    }
+}
