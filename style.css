@@ -98,8 +98,8 @@ main {
     flex-direction: column;
 }
 
-/* Banco de registradores */
-#banco-reg {
+/* Banco de registradores e memoria */
+.banco {
     height: 50%;
     max-height: 50rem;
     overflow-y: scroll;
@@ -108,38 +108,20 @@ main {
     border: 1px solid black;
     text-align: left;
 }
-#banco-reg th {
+.banco th {
     font-size: 1rem;
     font-weight: bold;
     padding: 0 1rem;
 }
-#banco-reg th:last-child {
+.banco th:last-child {
     border: none;
 }
-#banco-reg td {
+.banco td {
     border: 1px solid black;
 }
 
-/* Memoria */
 #memoria {
-    height: 50%;
-    max-height: 50rem;
-    overflow-y: scroll;
-    border: 1px solid black;
-    margin-left: 1rem;
     margin-top: 1rem;
-    display: flex;
-}
-#memoria th {
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0 1rem;
-}
-#memoria th:last-child {
-    border: none;
-}
-#memoria td {
-    border: 1px solid black;
 }
 
 /* Insercao de codigo */

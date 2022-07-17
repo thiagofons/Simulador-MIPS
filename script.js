@@ -169,4 +169,6 @@ function carregarMemoria() {
     <th>Endereço</th>
     <th>Valor</th>
     </tr>`;
+
+    
 }
