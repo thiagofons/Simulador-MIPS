@@ -46,21 +46,23 @@ header {
 main {
     display: flex;
     width: 100%;
-    align-items: center;
+
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .table-container {
     max-width: 100%;
     overflow: scroll;
+    display: flex;
 }
-table {
+
+/* Diagrama de execução */
+#diagrama {
     margin: 0;
     width: 100%;
     border: 1px solid black;
 }
-
 #tab-cabecalho td {
     width: 10rem;
     height: 3rem;
@@ -72,18 +74,18 @@ table {
     border-right: none;
 }
 
-th {
+#tab-cabecalho th {
     width: 10rem;
     height: 3rem;
     border-right: 1px solid black;
     text-align: center;
     
 }
-th:last-child {
+#tab-cabecalho th:last-child {
     border-right: none;
 }
 
-td {
+#tab-cabecalho td {
     font-family:Arial;
     font-size:1.5rem;
     width: 10rem;
@@ -92,14 +94,62 @@ td {
     text-align: center;
     font-weight: normal;
 }
-
-
 #inst-num {
     width: 5rem;
     height: 3rem;
     text-align: center;
     font-weight: bold;
 
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Banco de registradores */
+#banco-reg {
+    height: 50%;
+    max-height: 50rem;
+    overflow-y: auto;
+    margin-left: 1rem;
+    display: flex;
+    border: 1px solid black;
+    text-align: left;
+}
+#banco-reg th {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 1rem;
+}
+#banco-reg th:last-child {
+    border: none;
+}
+#banco-reg td {
+    border: 1px solid black;
+}
+
+/* Memoria */
+#memoria {
+    height: 50%;
+    max-height: 50rem;
+    overflow-y: auto;
+    border: 1px solid black;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    display: flex;
+}
+#memoria th {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 1rem;
+}
+#memoria th:last-child {
+    border: none;
+}
+#memoria td {
+    border: 1px solid black;
 }
 
 /* Insercao de codigo */
@@ -125,6 +175,7 @@ td {
 }
 
 .inserir-container textarea {
+    padding-top: .5rem;
     border: none;
     width: 100%;
     height: 100%;

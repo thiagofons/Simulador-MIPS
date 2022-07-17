@@ -22,7 +22,7 @@
 
     <main>
         <div class="table-container">
-            <table>
+            <table id="diagrama">
                 <tr class="tab-linha" id="tab-cabecalho">
                     <th>instrução</Ins></th>
                     <td>1</td>
@@ -59,20 +59,32 @@
                 </tr>
                 
             </table>
+        </div>
 
-            
+        <div class="sidebar">
+            <table id="banco-reg"></table>
+            <table id="memoria">
+                <tr>
+                    <th>Endereço</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
         
         <!-- Testar entrada de codigo -->
-        <div class="inserir-container">
+        <form class="inserir-container">
             <textarea name="codigo" id="codigo" cols="30" rows="10"></textarea>
             <button class="submit-btn" onclick="submit()">Rodar</button>
-        </div>
+        </form>
 
     </main>
-
-    <footer>
-        <!-- Inserir informações sobre o grupo -->
-    </footer>
 </body>
 </html>
