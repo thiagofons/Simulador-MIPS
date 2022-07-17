@@ -84,6 +84,7 @@ inserirCodigo.addEventListener("click", () => {
 function submit() {
     textoCodigo = document.getElementById("codigo").value.split("\n");
     textoCodigo = processaLinhas(textoCodigo);
+    leLabel();
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
 }
@@ -104,7 +105,8 @@ function processaLinhas(linhas) {
 function leLabel() {
     for(i = 0; i < textoCodigo.length; i++) {
         if(!(textoCodigo[i][0] in instrucoes)) {
-            //insere a label (linha i+1)
+            labels[textoCodigo[i][0]] = i;
+            textoCodigo[i] = textoCodigo[i].slice(1, textoCodigo[i].length);
         }
     }
 }
