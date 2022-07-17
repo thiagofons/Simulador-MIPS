@@ -105,19 +105,25 @@ function submit() {
 //separa cada linha em array
 function processaLinhas(linhas) {
     for(i = 0; i < linhas.length; i++) {
-        linhas[i] = linhas[i].replace(", ", ","); //remove espaço pós virgula
+        linhas[i] = linhas[i].replaceAll(", ", ","); //remove espaço pós virgula
         linhas[i] = linhas[i].toLowerCase();
-        linhas[i] = linhas[i].replace(":", " ");
-        linhas[i] = linhas[i].replace(",", " "); //substitui "," por " " para fazer apenas um split posteriormente
-        linhas[i] = linhas[i].replace("  ", " "); //remove espaço duplo, caso houver.
-        linhas[i] = linhas[i].split();
+        linhas[i] = linhas[i].replaceAll(":", " ");
+        linhas[i] = linhas[i].replaceAll(",", " "); //substitui "," por " " para fazer apenas um split posteriormente
+        linhas[i] = linhas[i].replaceAll("  ", " "); //remove espaço duplo, caso houver.
+        linhas[i] = linhas[i].split(" ");
     }
     return linhas;
 }
 
 function leLabel() {
     for(i = 0; i < textoCodigo.length; i++) {
-        if(!(textoCodigo[i][0] in instrucoes)) {
+        let inst = false;
+        for(j = 0; j < instrucoes.length; j++) {
+            if(instrucoes[j] == textoCodigo[i][0]) {
+                inst = true;
+            }
+        }
+        if(!inst) {
             labels[textoCodigo[i][0]] = i;
             textoCodigo[i] = textoCodigo[i].slice(1, textoCodigo[i].length);
         }
