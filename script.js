@@ -7,48 +7,55 @@ const bancoReg = document.getElementById("banco-reg");
 
 window.onload = () => {
     // Carregar o banco de registradores
-    bancoReg.innerHTML = 
+    loadReg = 
     `   <tr>
             <th>Registrador</th>
             <th>Valor</th>
         </tr>
-        <tr><td>$zero</td><td>0</td></tr>
-        <tr><td>$at</td><td>0</td></tr>
-        <tr><td>$v0</td><td>0</td></tr>
-        <tr><td>$v1</td><td>0</td></tr>
-        <tr><td>$a0</td><td>0</td></tr>
-        <tr><td>$a1</td><td>0</td></tr>
-        <tr><td>$a2</td><td>0</td></tr>
-        <tr><td>$a3</td><td>0</td></tr>
-        <tr><td>$t0</td><td>0</td></tr>
-        <tr><td>$t1</td><td>0</td></tr>
-        <tr><td>$t2</td><td>0</td></tr>
-        <tr><td>$t3</td><td>0</td></tr>
-        <tr><td>$t4</td><td>0</td></tr>
-        <tr><td>$t5</td><td>0</td></tr>
-        <tr><td>$t6</td><td>0</td></tr>
-        <tr><td>$t7</td><td>0</td></tr>
-        <tr><td>$s0</td><td>0</td></tr>
-        <tr><td>$s1</td><td>0</td></tr>
-        <tr><td>$s2</td><td>0</td></tr>
-        <tr><td>$s3</td><td>0</td></tr>
-        <tr><td>$s4</td><td>0</td></tr>
-        <tr><td>$s5</td><td>0</td></tr>
-        <tr><td>$s6</td><td>0</td></tr>
-        <tr><td>$s7</td><td>0</td></tr>
-        <tr><td>$t8</td><td>0</td></tr>
-        <tr><td>$t9</td><td>0</td></tr>
-        <tr><td>$k0</td><td>0</td></tr>
-        <tr><td>$k1</td><td>0</td></tr>
-        <tr><td>$gp</td><td>0</td></tr>
-        <tr><td>$sp</td><td>0</td></tr>
-        <tr><td>$fp</td><td>0</td></tr>
-        <tr><td>$ra</td><td>0</td></tr>
     `
+    valorReg = Object.entries(registradores);
+    for(i = 0; i < valorReg.length; i++) {
+        loadReg += `\n<tr><td>${valorReg[i][0]}</td><td id = ${valorReg[i][0]}>${valorReg[i][1]}</td></tr>`;
+    }
+    bancoReg.innerHTML = loadReg;
 };
 
 // Dados
 const numeroInstrucoes = 10;
+var registradores = {
+    "$zero": 0,
+    "$at": 0,
+    "$v0": 0,
+    "$v1": 0,
+    "$a0": 0,
+    "$a1": 0,
+    "$a2": 0,
+    "$a3": 0,
+    "$t0": 0,
+    "$t1": 0,
+    "$t2": 0,
+    "$t3": 0,
+    "$t4": 0,
+    "$t5": 0,
+    "$t6": 0,
+    "$t7": 0,
+    "$s0": 0,
+    "$s1": 0,
+    "$s2": 0,
+    "$s3": 0,
+    "$s4": 0,
+    "$s5": 0,
+    "$s6": 0,
+    "$s7": 0,
+    "$t8": 0,
+    "$t9": 0,
+    "$k0": 0,
+    "$k1": 0,
+    "$gp": 0,
+    "$sp": 0,
+    "$fp": 0,
+    "$ra": 0
+}
 
 const formularioCodigo = document.querySelector(".inserir-container");
 let textoCodigo = "";
@@ -109,4 +116,8 @@ function leLabel() {
             textoCodigo[i] = textoCodigo[i].slice(1, textoCodigo[i].length);
         }
     }
+}
+
+function atualizaRegistrador(registrador, valorNovo) {
+    document.getElementById(registrador).innerHTML = valorNovo;
 }
