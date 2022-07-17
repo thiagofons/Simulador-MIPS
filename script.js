@@ -1,12 +1,13 @@
 // Coisas do DOM
 const inserirCodigo = document.getElementById("inserir-codigo");
 const inserirContainer = document.querySelector(".inserir-container");
+const submitButton = document.querySelector(".submit-btn");
 
 // Dados
 const numeroInstrucoes = 10;
 
 const formularioCodigo = document.querySelector(".inserir-container");
-const textoCodigo = document.getElementById("codigo");
+let textoCodigo = "";
 
 const instrucao = ["IF" , "ID", "EX", "MEM", "WB"];
 const instrucoes = [
@@ -37,7 +38,8 @@ formularioCodigo.addEventListener("submit", (s) => {
     console.log(textoCodigo);
 })
 
-
-
-
-
+function submit() {
+    textoCodigo = document.getElementById("codigo").value;
+    document.getElementById("codigo").value = "";
+    inserirContainer.classList.toggle("inserir-container-on");
+}
