@@ -5,6 +5,9 @@ const inserirContainer = document.querySelector(".inserir-container");
 // Dados
 const numeroInstrucoes = 10;
 
+const formularioCodigo = document.querySelector(".inserir-container");
+const textoCodigo = document.getElementById("codigo");
+
 const instrucao = ["IF" , "ID", "EX", "MEM", "WB"];
 const instrucoes = [
     "add",
@@ -29,6 +32,10 @@ const bancoRegistradores = [];
 inserirCodigo.addEventListener("click", () => {
     inserirContainer.classList.toggle("inserir-container-on");
 });
+
+formularioCodigo.addEventListener("submit", (s) => {
+    console.log(textoCodigo);
+})
 
 
 
