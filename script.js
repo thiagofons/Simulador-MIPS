@@ -10,7 +10,6 @@ const diagrama = document.getElementById("diagrama");
 const cabecalho = document.getElementById("tab-cabecalho")
 
 window.onload = () => {
-    carregarDiagrama(textoCodigo);
     carregarBancoRegistradores();
     carregarMemoria();
 };
@@ -85,6 +84,8 @@ inserirCodigo.addEventListener("click", () => {
 });
 
 function submit() {
+    resetaDiagrama();
+    carregarDiagrama();
     textoCodigo = document.getElementById("codigo").value.split("\n").filter(checkNaoVazio);
     geraLinhas();
     textoCodigo = processaLinhas(textoCodigo);
@@ -92,6 +93,7 @@ function submit() {
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
     console.log("Texto do codigo: " + textoCodigo);
+    carregarDiagrama(codigo);
 }
 
 //separa cada linha em array
@@ -140,7 +142,7 @@ function modificaMemoria(memoria, valorNovo) {
 }
 
 // Conversao do codigo no diagrama
-function carregarDiagrama(codigo) {
+function carregarDiagrama() {
     let linhaAtual = 0;
 
     // Carregar o cabecalho do diagrama
@@ -265,5 +267,15 @@ function geraLinhas() {
         <td id = mem${i}>mem</td>
         <td id = wb${i}>wb</td>
         </tr>`;
+    }
+}
+
+function resetaDiagrama() {
+    diagrama.innerHTML = "<tr id='tab-cabecalho'></tr>";
+    carregarDiagrama();
+
+    let temp = Object.entries(registradores);
+    for(let i = 0; i < temp.length; i++) {
+        atualizaRegistrador(temp[i][0], 0) ;
     }
 }
