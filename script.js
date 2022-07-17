@@ -93,7 +93,6 @@ function submit() {
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
     console.log("Texto do codigo: " + textoCodigo);
-    carregarDiagrama(codigo);
 }
 
 //separa cada linha em array
@@ -146,7 +145,7 @@ function carregarDiagrama() {
     let linhaAtual = 0;
 
     // Carregar o cabecalho do diagrama
-    cabecalho.innerHTML += `<th>instrução</th>`;
+    diagrama.insertRow(0).outerHTML = `<th>instrução</th>`;
     for(let i = 1; i < numeroInstrucoes + 1; i++) {
         cabecalho.innerHTML += `<th>${i}</th>`;
     }
@@ -272,8 +271,6 @@ function geraLinhas() {
 
 function resetaDiagrama() {
     diagrama.innerHTML = "<tr id='tab-cabecalho'></tr>";
-    carregarDiagrama();
-
     let temp = Object.entries(registradores);
     for(let i = 0; i < temp.length; i++) {
         atualizaRegistrador(temp[i][0], 0) ;
