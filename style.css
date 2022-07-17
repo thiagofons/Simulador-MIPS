@@ -60,47 +60,37 @@ main {
 /* Diagrama de execução */
 #diagrama {
     margin: 0;
-    width: 100%;
+    width: 100vw;
     border: 1px solid black;
-}
-#tab-cabecalho td {
-    width: 10rem;
-    height: 3rem;
-    border-right: 1px solid black;
-    text-align: center;
-    font-weight: bold;
-}
-#tab-cabecalho td:last-child {
-    border-right: none;
+    display: flex;
+    flex-direction: column;
 }
 
 #tab-cabecalho th {
-    width: 10rem;
+    width: 20rem;
     height: 3rem;
-    border-right: 1px solid black;
     text-align: center;
     
 }
-#tab-cabecalho th:last-child {
-    border-right: none;
+#tab-cabecalho th:first-child {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 50rem;
 }
 
-#tab-cabecalho td {
-    font-family:Arial;
-    font-size:1.5rem;
-    width: 10rem;
-    height: 3rem;
-    padding-inline: 50px;
+.tab-linha {    
     text-align: center;
-    font-weight: normal;
+    height: 2.5rem;
 }
-#inst-num {
-    width: 5rem;
-    height: 3rem;
-    text-align: center;
-    font-weight: bold;
+.tab-linha td {
+    border-right: 1px solid black;
+    
+}
+.nome-instrucao {
+    font-size: 1rem;
+}
 
-}
+
 
 /* Sidebar */
 .sidebar {
@@ -112,7 +102,7 @@ main {
 #banco-reg {
     height: 50%;
     max-height: 50rem;
-    overflow-y: auto;
+    overflow-y: scroll;
     margin-left: 1rem;
     display: flex;
     border: 1px solid black;
@@ -134,7 +124,7 @@ main {
 #memoria {
     height: 50%;
     max-height: 50rem;
-    overflow-y: auto;
+    overflow-y: scroll;
     border: 1px solid black;
     margin-left: 1rem;
     margin-top: 1rem;
@@ -182,7 +172,7 @@ main {
     border-radius: .5rem;
     background-color: transparent;
     font-family: monospace;
-    
+    resize: none;
     margin-bottom: 1rem;
 }
 .inserir-container textarea:focus {

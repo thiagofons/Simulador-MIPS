@@ -6,28 +6,17 @@ const submitButton = document.querySelector(".submit-btn");
 const bancoReg = document.getElementById("banco-reg");
 const memoria = document.getElementById("memoria");
 
+const diagrama = document.getElementById("diagrama");
+const cabecalho = document.getElementById("tab-cabecalho")
+
 window.onload = () => {
-    // Carregar o banco de registradores
-    loadReg = 
-    `   <tr>
-            <th>Registrador</th>
-            <th>Valor</th>
-        </tr>
-    `
-    valorReg = Object.entries(registradores);
-    for(i = 0; i < valorReg.length; i++) {
-        loadReg += `\n<tr><td>${valorReg[i][0]}</td><td id = ${valorReg[i][0]}>${valorReg[i][1]}</td></tr>`;
-    }
-    bancoReg.innerHTML = loadReg;
-    
-    memoria.innerHTML = `<tr>
-        <th>Endereço</th>
-        <th>Valor</th>
-    </tr>`;
+    carregarDiagrama(textoCodigo);
+    carregarBancoRegistradores();
+    carregarMemoria();
 };
 
 // Dados
-const numeroInstrucoes = 10;
+let numeroInstrucoes = 10;
 var registradores = {
     "$zero": 0,
     "$at": 0,
@@ -87,6 +76,7 @@ let labels = {};
 let memoriaDados = [];
 let bancoRegistradores = [];
 
+
 // Logica
 
 // Formulario para inserir o codigo-fonte
@@ -100,6 +90,7 @@ function submit() {
     leLabel();
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
+    console.log("Texto do codigo: " + textoCodigo);
 }
 
 //separa cada linha em array
@@ -135,4 +126,41 @@ function insereMemoria(memoriaNova, valor=0) {
 
 function modificaMemoria(memoria, valorNovo) {
     document.getElementById(`${memoria}`).innerHTML = valorNovo;
+}
+
+// Conversao do codigo no diagrama
+function carregarDiagrama(codigo) {
+    let linhaAtual = 0;
+
+    // Carregar o cabecalho do diagrama
+    cabecalho.innerHTML += `<th>instrução</th>`;
+    for(let i = 1; i < numeroInstrucoes + 1; i++) {
+        cabecalho.innerHTML += `<th>${i}</th>`;
+    }
+    linhaAtual++;
+
+    // Carregar as instrucoes
+
+}
+
+function carregarBancoRegistradores() {
+    loadReg = 
+    `   <tr>
+            <th>Registrador</th>
+            <th>Valor</th>
+        </tr>
+    `
+    valorReg = Object.entries(registradores);
+    for(i = 0; i < valorReg.length; i++) {
+        loadReg += `\n<tr><td>${valorReg[i][0]}</td><td id = ${valorReg[i][0]}>${valorReg[i][1]}</td></tr>`;
+    }
+    bancoReg.innerHTML = loadReg;
+}
+
+function carregarMemoria() {
+    // Cabecalho da memoria
+    memoria.innerHTML = `<tr>
+    <th>Endereço</th>
+    <th>Valor</th>
+    </tr>`;
 }
