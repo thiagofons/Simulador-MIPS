@@ -4,6 +4,7 @@ const inserirContainer = document.querySelector(".inserir-container");
 const submitButton = document.querySelector(".submit-btn");
 
 const bancoReg = document.getElementById("banco-reg");
+const memoria = document.getElementById("memoria");
 
 window.onload = () => {
     // Carregar o banco de registradores
@@ -18,6 +19,11 @@ window.onload = () => {
         loadReg += `\n<tr><td>${valorReg[i][0]}</td><td id = ${valorReg[i][0]}>${valorReg[i][1]}</td></tr>`;
     }
     bancoReg.innerHTML = loadReg;
+    
+    memoria.innerHTML = `<tr>
+        <th>Endereço</th>
+        <th>Valor</th>
+    </tr>`;
 };
 
 // Dados
@@ -120,4 +126,13 @@ function leLabel() {
 
 function atualizaRegistrador(registrador, valorNovo) {
     document.getElementById(registrador).innerHTML = valorNovo;
+}
+
+function insereMemoria(memoriaNova, valor=0) {
+    tamanhoTabela = memoria.rows.length
+    memoria.insertRow(tamanhoTabela).outerHTML = `<tr><td>${memoriaNova}</td><td id = ${memoriaNova}>${valor}</td></tr>`
+}
+
+function modificaMemoria(memoria, valorNovo) {
+    document.getElementById(`${memoria}`).innerHTML = valorNovo;
 }
