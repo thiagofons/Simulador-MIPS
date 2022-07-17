@@ -16,7 +16,7 @@ window.onload = () => {
 };
 
 // Dados
-let numeroInstrucoes = 10;
+let numeroInstrucoes = 0;
 var registradores = {
     "$zero": 0,
     "$at": 0,
@@ -73,7 +73,7 @@ const instrucoes = [
     "sub"
 ];
 let labels = {};
-let memoriaDados = [];
+let memoriaDados = {};
 let bancoRegistradores = [];
 
 
@@ -85,7 +85,8 @@ inserirCodigo.addEventListener("click", () => {
 });
 
 function submit() {
-    textoCodigo = document.getElementById("codigo").value.split("\n");
+    textoCodigo = document.getElementById("codigo").value.split("\n").filter(checkNaoVazio);
+    geraLinhas();
     textoCodigo = processaLinhas(textoCodigo);
     leLabel();
     document.getElementById("codigo").value = "";
@@ -108,30 +109,34 @@ function processaLinhas(linhas) {
 
 function leLabel() {
     for(i = 0; i < textoCodigo.length; i++) {
-        let inst = false;
-        for(j = 0; j < instrucoes.length; j++) {
-            if(instrucoes[j] == textoCodigo[i][0]) {
-                inst = true;
-            }
-        }
-        if(!inst) {
+        if(checkInst(textoCodigo[i][0]) == -1) {
             labels[textoCodigo[i][0]] = i;
             textoCodigo[i] = textoCodigo[i].slice(1, textoCodigo[i].length);
         }
     }
 }
 
+function checkInst(cmp) {
+    for(i = 0; i < instrucoes.length; i++) {
+        if(instrucoes[i] == cmp) return i;
+    }
+    return -1;
+}
+
 function atualizaRegistrador(registrador, valorNovo) {
     document.getElementById(registrador).innerHTML = valorNovo;
+    registradores[registrador] = valorNovo;
 }
 
 function insereMemoria(memoriaNova, valor=0) {
     tamanhoTabela = memoria.rows.length
     memoria.insertRow(tamanhoTabela).outerHTML = `<tr><td>${memoriaNova}</td><td id = ${memoriaNova}>${valor}</td></tr>`
+    memoriaDados[memoriaNova] = valor;
 }
 
 function modificaMemoria(memoria, valorNovo) {
     document.getElementById(`${memoria}`).innerHTML = valorNovo;
+    memoriaDados[memoriaNova] = valor;
 }
 
 // Conversao do codigo no diagrama
@@ -169,6 +174,96 @@ function carregarMemoria() {
     <th>Endereço</th>
     <th>Valor</th>
     </tr>`;
+}
 
-    
+function contaInstrucao() {
+    let i = 0;
+    let linhaJal = 0;
+    while(i < textoCodigo.length) {
+        if(checkInst(textoCodigo[i][0]) != -1) {
+            numeroInstrucoes += 1;
+            switch(textoCodigo[i][0]) {
+                case "beq":
+                    if(registradores[textoCodigo[i][1]] == registradores[textoCodigo[i][2]]) {
+                        i = labels[textoCodigo[i][3]];
+                    }
+                    break;
+                
+                case "bne":
+                    if(registradores[textoCodigo[i][1]] != registradores[textoCodigo[i][2]]) {
+                        i = labels[textoCodigo[i][3]];
+                    }
+                    break;
+                
+                case "j":
+                    i = labels[textoCodigo[i][1]];
+                    break;
+                
+                case "jal":
+                    linhaJal = i;
+                    i = labels[textoCodigo[i][1]];
+                    break;
+                
+                case "jr":
+                    i = linhaJal + 1;
+                    break;
+                
+                case "add":
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][2]] + registradores[textoCodigo[i][3]]);
+                    break;
+                
+                case "addi":
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][2]] + parseInt(textoCodigo[i][3]));
+                    break;
+                
+                case "and":
+                    //?????
+                    break;
+                
+                case "lw":
+                    //??????
+                    break;
+                
+                case "or":
+                    //??????
+                    break;
+                
+                case "sll":
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][1]] << parseInt(textoCodigo[i][2]))
+                    break;
+                
+                case "srl":
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][1]] >> parseInt(textoCodigo[i][2]))
+                    break;
+                
+                case "sw":
+
+                    break;
+
+                case "sub":
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][2]] - registradores[textoCodigo[i][3]]);
+                    break;
+            }
+        }
+        i++;
+    }
+}
+
+function checkNaoVazio(arr) {
+    if(arr.length > 0) return true;
+    return false
+}
+
+function geraLinhas() {
+    for(i = 0; i < textoCodigo.length; i++) {
+        tamanhoTabela = diagrama.rows.length
+        diagrama.insertRow(tamanhoTabela).outerHTML = `<tr class="tab-linha instrucao">
+        <td class="nome-instrucao" id = "linha${i}">${textoCodigo[i]}</td>
+        <td id = if${i}>if</td>
+        <td id = id${i}>id</td>
+        <td id = ex${i}>ex</td>
+        <td id = mem${i}>mem</td>
+        <td id = wb${i}>wb</td>
+        </tr>`;
+    }
 }
