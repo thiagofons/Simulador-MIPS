@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Poppins&display=swap');
 
 * {
     box-sizing: border-box;
@@ -34,8 +34,12 @@ header {
     
 }
 
-#nav-bar ul a {
-    text-decoration: none;
+.menu-item {
+
+}
+.menu-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 main {
@@ -46,7 +50,10 @@ main {
     flex-direction: column;
 }
 
-
+.table-container {
+    max-width: 100%;
+    overflow: scroll;
+}
 table {
     margin: 0;
     width: 100%;
@@ -76,8 +83,13 @@ th:last-child {
 }
 
 td {
+    font-family:Arial;
+    font-size:1.5rem;
     width: 10rem;
     height: 3rem;
+    padding-inline: 50px;
+    text-align: center;
+    font-weight: normal;
 }
 
 
@@ -91,12 +103,51 @@ td {
 
 /* Insercao de codigo */
 .inserir-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 50%);
+
+    position: absolute;
+    top: calc((100% - 45rem) / 2);
+    width: 30rem;
+    height: 45rem;
+    padding: 1rem;
     
-
-    background-color: aqua;
-    width: 20rem;
-    height: 6rem;
-
     border-radius: 1rem;
+    text-align: center;
+    margin: 0;
 
+    display: none;
+    flex-direction: column;
+}
+.inserir-container-on {
+    display: flex;
+}
+
+.inserir-container textarea {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    background-color: transparent;
+    font-family: monospace;
+    
+    margin-bottom: 1rem;
+}
+.inserir-container textarea:focus {
+    border: none;
+}
+
+.inserir-container .submit-btn {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 80%);
+    background-color: rgba(0, 0, 0, 10%);
+    border: none;
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+}
+.inserir-container .submit-btn:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 75%);
+    color: white;
 }

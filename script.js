@@ -1,7 +1,10 @@
 // Coisas do DOM
-
+const inserirCodigo = document.getElementById("inserir-codigo");
+const inserirContainer = document.querySelector(".inserir-container");
 
 // Dados
+const numeroInstrucoes = 10;
+
 const instrucao = ["IF" , "ID", "EX", "MEM", "WB"];
 const instrucoes = [
     "add",
@@ -23,8 +26,9 @@ const memoriaDados = [];
 const bancoRegistradores = [];
 
 // Logica
-    // 1 - Receber o arquivo ASM por texto
-    
+inserirCodigo.addEventListener("click", () => {
+    inserirContainer.classList.toggle("inserir-container-on");
+});
 
 
 

@@ -13,10 +13,9 @@
         <h1>Simulador MIPS</h1>
         <nav id="nav-bar">
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="">Sobre</a></li>
-                <li><a href="">Inserir Código</a></li>
-                <li><a href=""></a></li>
+                <li class="menu-item">Início</li>
+                <li class="menu-item">Sobre</li>
+                <li class="menu-item" id="inserir-codigo">Inserir Código</li>
             </ul>
         </nav>
     </header>
@@ -36,21 +35,38 @@
                     <td>3</td>
                     <td>3</td>
                     <td>3</td>
-                    
-                    
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
                     
 
                     <td>3</td>
                 </tr>
-                <tr>
+                <tr class="tab-linha">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                     
                 </tr>
+                
             </table>
+
+            
         </div>
         
         <!-- Testar entrada de codigo -->
         <div class="inserir-container">
-            
+            <textarea name="codigo" id="codigo" cols="30" rows="10"></textarea>
+            <button class="submit-btn" onclick="submitText()">Rodar</button>
         </div>
 
     </main>
