@@ -91,7 +91,6 @@ function submit() {
     leLabel();
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
-    console.log("Texto do codigo: " + textoCodigo);
 }
 
 //separa cada linha em array
