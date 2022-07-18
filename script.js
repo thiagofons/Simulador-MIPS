@@ -217,7 +217,7 @@ function contaInstrucao() {
                     break;
                 
                 case "and":
-                    //?????
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][2]] & registradores[textoCodigo[i][3]]);
                     break;
                 
                 case "lw":
@@ -225,7 +225,7 @@ function contaInstrucao() {
                     break;
                 
                 case "or":
-                    //??????
+                    atualizaRegistrador(textoCodigo[i][1], registradores[textoCodigo[i][2]] | registradores[textoCodigo[i][3]]);
                     break;
                 
                 case "sll":
