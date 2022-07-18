@@ -95,7 +95,7 @@ function submit() {
 
 //separa cada linha em array
 function processaLinhas(linhas) {
-    for(i = 0; i < linhas.length; i++) {
+    for(let i = 0; i < linhas.length; i++) {
         linhas[i] = linhas[i].replaceAll(", ", ","); //remove espaço pós virgula
         linhas[i] = linhas[i].toLowerCase();
         linhas[i] = linhas[i].replaceAll(":", " ");
@@ -107,7 +107,7 @@ function processaLinhas(linhas) {
 }
 
 function leLabel() {
-    for(i = 0; i < textoCodigo.length; i++) {
+    for(let i = 0; i < textoCodigo.length; i++) {
         if(checkInst(textoCodigo[i][0]) == -1) {
             labels[textoCodigo[i][0]] = i;
             textoCodigo[i] = textoCodigo[i].slice(1, textoCodigo[i].length);
@@ -116,7 +116,7 @@ function leLabel() {
 }
 
 function checkInst(cmp) {
-    for(i = 0; i < instrucoes.length; i++) {
+    for(let i = 0; i < instrucoes.length; i++) {
         if(instrucoes[i] == cmp) return i;
     }
     return -1;
@@ -162,7 +162,7 @@ function carregarBancoRegistradores() {
         </tr>
     `
     valorReg = Object.entries(registradores);
-    for(i = 0; i < valorReg.length; i++) {
+    for(let i = 0; i < valorReg.length; i++) {
         loadReg += `\n<tr><td>${valorReg[i][0]}</td><td id = ${valorReg[i][0]}>${valorReg[i][1]}</td></tr>`;
     }
     bancoReg.innerHTML = loadReg;
@@ -257,11 +257,11 @@ function checkNaoVazio(arr) {
 function geraLinhas() {
     const cabecalho = document.getElementById("tab-cabecalho");
     
-    for(i = 1; i < 5; i++) {
+    for(let i = 1; i < 5; i++) {
         cabecalho.innerHTML += `<th>${i}</th>`;
     }
 
-    for(i = 0; i < textoCodigo.length; i++) {
+    for(let i = 0; i < textoCodigo.length; i++) {
         cabecalho.innerHTML += `<th>${i + 5}</th>`
         tamanhoTabela = diagrama.rows.length
 
