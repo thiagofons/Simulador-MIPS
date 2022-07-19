@@ -30,12 +30,7 @@ header {
 }
 
 #nav-bar ul li {
-    padding-left: 1rem;
-    
-}
-
-.menu-item {
-
+    padding-left: 1rem;  
 }
 
 .menu-item:hover {
@@ -52,33 +47,34 @@ main {
 }
 
 .table-container {
+    border: 1px solid black;
     max-width: 100%;
-    overflow-x: scroll;
-    display: flex;
+    width: 100vw;
+    overflow: scroll;
+    height: auto;
 }
 
 /* Diagrama de execução */
 #diagrama {
     margin: 0;
-    width: 100vw;
-    border: 1px solid black;
+    width: 100%;
+    
     display: flex;
     flex-direction: column;
 }
 
 #tab-cabecalho th {
     max-width: 100%;
-    width: 20rem;
+    width: 30rem;
     height: 3rem;
     text-align: center;
-
+    border-right: 1px solid black;
 }
 #tab-cabecalho th:first-child {
-    border-bottom: 1px solid black;
     border-right: 1px solid black;
     width: 50rem;
+    
 }
-
 .tab-linha {    
     text-align: center;
     height: 2.5rem;
@@ -92,18 +88,13 @@ main {
 }
 
 
-
 /* Sidebar */
 .sidebar {
     display: flex;
     flex-direction: column;
 }
 
-.tab-diagrama {
-    max-width: 100%;
-    max-height: 100%;
-    overflow: scroll;
-}
+
 
 /* Banco de registradores e memoria */
 .banco {
