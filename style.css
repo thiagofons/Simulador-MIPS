@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Poppins&display=swap');
 
+/* Color Pallete */
+:root {
+    --black: #000000;
+    --smooky-black: #121110;
+    --middle-grey: #8a817c;
+    --pale-silver: #c5c0be;
+    --white: #FFFFFF;
+    --asparagus: #8CAE68;
+    --maximum-green: #60992D; 
+}
+
+/* Styles */
 * {
     box-sizing: border-box;
 }
@@ -8,14 +20,26 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
-    padding: 0 1rem;
+    padding: 0;
     margin: 0;
-    height: 100vh;
 }
 
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    height: 10vh;
+    padding: 0 1rem;
+}
+
+header h1 {
+    margin: 0;
+
+}
+header h1 a {
+    text-decoration: none;
+    color: var(--black);
 }
 
 #nav-bar {
@@ -23,27 +47,47 @@ header {
     flex-direction: row;
     align-items: center;
 }
-
 #nav-bar ul {
     list-style-type: none;
     display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #nav-bar ul li {
-    padding-left: 1rem;  
+    margin-left: 1rem;  
 }
 
+.menu-item a {
+    text-decoration: none;
+    color: var(--black);
+}
 .menu-item:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+.menu-item:active {
+    color: #8a817c;
+}
+
+
+#inserir-codigo {
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    color: var(--white);
+    background-color: var(--asparagus);
+}
+#inserir-codigo:active {
+    background-color: var(--maximum-green);
+}
 
 main {
     display: flex;
-    width: 100%;
-
+    max-width: 100vw;
+    height: 90vh;
     justify-content: center;
     flex-direction: row;
+    padding: 0 1rem;
 }
 
 .table-container {
@@ -51,50 +95,49 @@ main {
     max-width: 100%;
     width: 100vw;
     overflow: scroll;
-    height: auto;
+    max-height: 90vh;
+    margin-bottom: 1rem;
 }
 
 /* Diagrama de execução */
 #diagrama {
     margin: 0;
-    width: 100%;
-    
+    width: 100vw;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-
 #tab-cabecalho th {
     max-width: 100%;
-    width: 30rem;
+    min-width: 5rem;
     height: 3rem;
     text-align: center;
-    border-right: 1px solid black;
+
 }
 #tab-cabecalho th:first-child {
-    border-right: 1px solid black;
-    width: 50rem;
-    
+    min-width: 15rem;
 }
 .tab-linha {    
     text-align: center;
     height: 2.5rem;
 }
-.tab-linha td {
-    border-right: 1px solid black;
-    
+.tab-linha td:not(:empty) {
+    border: 1px solid black;
+    width: 3rem;
+}
+.tab-linha td:first-child {
+    border: none;
 }
 .nome-instrucao {
     font-size: 1rem;
 }
 
-
 /* Sidebar */
 .sidebar {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
-
-
 
 /* Banco de registradores e memoria */
 .banco {
@@ -172,4 +215,71 @@ main {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 75%);
     color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 1rem;
+    background: var(--white);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: var(--middle-grey);
+}
+
+/* Responsivity */
+@media screen and (max-width: 768px) {
+    body {
+        max-height: 100vh;
+    }
+    header {
+        margin-bottom: 1rem;        
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        z-index: 1;
+    }   
+    
+    #nav-bar ul {
+        margin: 0;
+        padding: 0;
+        flex-direction: row;
+    }
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    .table-container {
+        height: 100vh;
+    }
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .banco {
+        width: 100%;
+        height: 10rem;
+        margin: 0;
+        justify-content: center;
+    }
+    .banco td {
+        width: 100%;
+    }
+    #memoria {
+        margin: 0;
+        margin-left: 1rem;
+    }
+
+    .inserir-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        border: none;
+        width: 100%;
+        height: 100%;
+    }
 }

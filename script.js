@@ -49,8 +49,6 @@ var registradores = {
     "$fp": 0,
     "$ra": 0
 }
-
-const formularioCodigo = document.querySelector(".inserir-container");
 let textoCodigo = "";
 
 const instrucao = ["IF" , "ID", "EX", "MEM", "WB"];
@@ -273,11 +271,11 @@ function geraLinhas() {
             inicio += `<td></td>`;
         }
         inicio += `
-            <td id = if${i}>if</td>
-            <td id = id${i}>id</td>
-            <td id = ex${i}>ex</td>
-            <td id = mem${i}>mem</td>
-            <td id = wb${i}>wb</td>
+            <td id = if${i}>IF</td>
+            <td id = id${i}>ID</td>
+            <td id = ex${i}>EX</td>
+            <td id = mem${i}>MEM</td>
+            <td id = wb${i}>WB</td>
             </tr>`;
 
         diagrama.insertRow(tamanhoTabela).outerHTML = inicio;
@@ -291,3 +289,4 @@ function resetaDiagrama() {
         atualizaRegistrador(temp[i][0], 0) ;
     }
 }
+
