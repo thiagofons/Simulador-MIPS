@@ -112,6 +112,8 @@ function processaLinhas(linhas) {
         linhas[i] = linhas[i].replaceAll(":", " ");
         linhas[i] = linhas[i].replaceAll(",", " "); //substitui "," por " " para fazer apenas um split posteriormente
         linhas[i] = linhas[i].replaceAll("  ", " "); //remove espaço duplo, caso houver.
+        linhas[i] = linhas[i].replaceAll("(", " ");
+        linhas[i] = linhas[i].replaceAll(")", "");
         linhas[i] = linhas[i].split(" ");
     }
     return linhas;
@@ -158,7 +160,7 @@ function insereMemoria(memoriaNova, valor=0) {
 
 function modificaMemoria(memoria, valorNovo) {
     document.getElementById(`${memoria}`).innerHTML = valorNovo;
-    memoriaDados[memoriaNova] = valor;
+    memoriaDados[memoria] = valor;
 }
 
 // Conversao do codigo no diagrama
@@ -355,7 +357,16 @@ function passaCiclo() {
                     break;
                 
                 case "lw":
-                    //??????
+                    if((registradores[textoCodigo[linha][1]][1] == -1 && registradores[textoCodigo[linha][3]][1] == -1) || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], memoriaDados[(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16)], 4);
+                    else {
+                        document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        if(registradores[textoCodigo[linha][1]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "or":
@@ -392,7 +403,16 @@ function passaCiclo() {
                     break;
                 
                 case "sw":
-                    //???
+                    if((registradores[textoCodigo[linha][1]][1] == -1 && registradores[textoCodigo[linha][3]][1] == -1) || !stallJump)
+                        insereMemoria((parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16), registradores[textoCodigo[linha][1]][0]);
+                    else {
+                        document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        if(registradores[textoCodigo[linha][1]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
 
                 case "sub":
