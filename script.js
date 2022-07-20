@@ -93,7 +93,6 @@ function submit() {
     resetaDiagrama();
     carregarDiagrama();
     textoCodigo = document.getElementById("codigo").value.split("\n").filter(checkLinhas);
-    //geraLinhas();
     textoOriginal = [...textoCodigo];
     textoCodigo = processaLinhas(textoCodigo);
     leLabel();
