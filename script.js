@@ -385,36 +385,6 @@ function checkLinhas(arr) {
     return false
 }
 
-function geraLinhas() {
-    const cabecalho = document.getElementById("tab-cabecalho");
-    
-    for(let i = 1; i < 5; i++) {
-        cabecalho.innerHTML += `<th>${i}</th>`;
-    }
-
-    for(let i = 0; i < textoCodigo.length; i++) {
-        cabecalho.innerHTML += `<th>${i + 5}</th>`
-        tamanhoTabela = diagrama.rows.length
-
-        let inicio = `
-            <tr class="tab-linha instrucao">
-            <td class="nome-instrucao" id = "linha${i}">${textoCodigo[i]}</td>`;
-
-        for(let espaco = 0; espaco < i; espaco++) {
-            inicio += `<td></td>`;
-        }
-        inicio += `
-            <td id = if${i}>IF</td>
-            <td id = id${i}>ID</td>
-            <td id = ex${i}>EX</td>
-            <td id = mem${i}>MEM</td>
-            <td id = wb${i}>WB</td>
-            </tr>`;
-
-        diagrama.insertRow(tamanhoTabela).outerHTML = inicio;
-    }
-}
-
 function resetaDiagrama() {
     registradoresModificar = [];
     diagrama.innerHTML = "<tr id='tab-cabecalho'></tr>";
