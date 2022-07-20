@@ -91,6 +91,10 @@ function submit() {
     inserirContainer.classList.toggle("inserir-container-on");
 }
 
+function fecharInserir() {
+    inserirContainer.classList.toggle("inserir-container-on");
+}
+
 //separa cada linha em array
 function processaLinhas(linhas) {
     for(let i = 0; i < linhas.length; i++) {
