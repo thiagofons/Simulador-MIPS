@@ -145,6 +145,7 @@ function controlaRegistrador(registrador, i) {
         registradores[registrador][0] = registradores[registrador][2];
         document.getElementById(registrador).innerHTML = registradores[registrador][0]
         registradoresModificar.splice(i, 1);
+        registradores[registrador][1] = -1;
         fix++;
     }
 }
@@ -295,24 +296,47 @@ function passaCiclo() {
                 case "jal":
                     linhaJal = linha;
                     linha = labels[textoCodigo[linha][1]] - 1;
-                    bolha = 1;
+                    if(stallJump)
+                        bolha = 1;
                     break;
                 
                 case "jr":
                     linha = linhaJal;
-                    bolha = 1;
+                    if(stallJump)
+                        bolha = 1;
                     break;
                 
                 case "add":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + registradores[textoCodigo[linha][3]][0], 3);
+                    if((registradores[textoCodigo[linha][2]][1] == -1 && registradores[textoCodigo[linha][3]][1]) || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + registradores[textoCodigo[linha][3]][0], 3);
+                    else {
+                        if(registradores[textoCodigo[linha][2]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "addi":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + parseInt(textoCodigo[linha][3]), 3);
+                    if(registradores[textoCodigo[linha][2]][1] == -1 || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + parseInt(textoCodigo[linha][3]), 3);
+                    else {
+                        bolha = registradores[textoCodigo[linha][2]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "and":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] & registradores[textoCodigo[linha][3]][0], 3);
+                    if((registradores[textoCodigo[linha][2]][1] == -1 && registradores[textoCodigo[linha][3]][1]) || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] & registradores[textoCodigo[linha][3]][0], 3);
+                    else {
+                        if(registradores[textoCodigo[linha][2]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "lw":
@@ -320,15 +344,33 @@ function passaCiclo() {
                     break;
                 
                 case "or":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] | registradores[textoCodigo[linha][3]][0], 3);
+                    if((registradores[textoCodigo[linha][2]][1] == -1 && registradores[textoCodigo[linha][3]][1]) || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] | registradores[textoCodigo[linha][3]][0], 3);
+                    else {
+                        if(registradores[textoCodigo[linha][2]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "sll":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] << parseInt(textoCodigo[linha][2]), 3)
+                    if(registradores[textoCodigo[linha][2]][1] == -1 || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] << parseInt(textoCodigo[linha][2]), 3)
+                    else {
+                        bolha = registradores[textoCodigo[linha][2]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "srl":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] >> parseInt(textoCodigo[linha][2]), 3)
+                    if(registradores[textoCodigo[linha][2]][1] == -1 || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] >> parseInt(textoCodigo[linha][2]), 3)
+                    else {
+                        bolha = registradores[textoCodigo[linha][2]][1];
+                        linha--;
+                    }
                     break;
                 
                 case "sw":
@@ -336,7 +378,15 @@ function passaCiclo() {
                     break;
 
                 case "sub":
-                    atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] - registradores[textoCodigo[linha][3]][0], 3);
+                    if((registradores[textoCodigo[linha][2]][1] == -1 && registradores[textoCodigo[linha][3]][1]) || !stallJump)
+                        atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] - registradores[textoCodigo[linha][3]][0], 3);
+                    else {
+                        if(registradores[textoCodigo[linha][2]][1] > -1)
+                            bolha = registradores[textoCodigo[linha][2]][1];
+                        else
+                            bolha = registradores[textoCodigo[linha][3]][1];
+                        linha--;
+                    }
                     break;
             }
             linha++;
