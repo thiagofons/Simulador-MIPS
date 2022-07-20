@@ -286,11 +286,17 @@ function passaCiclo() {
                     break;
                 
                 case "bne":
-                    if(registradores[textoCodigo[linha][1]][0] != registradores[textoCodigo[linha][2]][0]) {
-                        linha = labels[textoCodigo[linha][3]] - 1;
+                    if((registradores[textoCodigo[linha][2]][1] == -1 && registradores[textoCodigo[linha][3]][1] == -1) || !stallJump) {
+                        if(registradores[textoCodigo[linha][1]][0] != registradores[textoCodigo[linha][2]][0]) {
+                            linha = labels[textoCodigo[linha][3]] - 1;
+                        }
+                        if(stallJump)
+                            bolha = 1;
                     }
-                    if(stallJump)
+                    else {
+                        document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
                         bolha = 1;
+                    }
                     break;
                 
                 case "j":
