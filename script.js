@@ -192,6 +192,10 @@ function carregarMemoria() {
     </tr>`;
 }
 
+function dec2hex(i) {
+    return (i+0x10000).toString(16).substr(-4).toUpperCase();
+}
+
 function passaCiclo() {
     ciclo++;
     if(finish > 4) return;
@@ -358,7 +362,8 @@ function passaCiclo() {
                 
                 case "lw":
                     if((registradores[textoCodigo[linha][1]][1] == -1 && registradores[textoCodigo[linha][3]][1] == -1) || !stallJump)
-                        atualizaRegistrador(textoCodigo[linha][1], memoriaDados[(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16)], 4);
+                        // atualizaRegistrador(textoCodigo[linha][1], memoriaDados[(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16)], 4);
+                        atualizaRegistrador(textoCodigo[linha][1], memoriaDados[dec2hex(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0])], 4);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
                         if(registradores[textoCodigo[linha][1]][1] > -1)
@@ -404,7 +409,8 @@ function passaCiclo() {
                 
                 case "sw":
                     if((registradores[textoCodigo[linha][1]][1] == -1 && registradores[textoCodigo[linha][3]][1] == -1) || !stallJump)
-                        insereMemoria((parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16), registradores[textoCodigo[linha][1]][0]);
+                        // insereMemoria((parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]).toString(16), registradores[textoCodigo[linha][1]][0]);
+                        insereMemoria(dec2hex(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]), registradores[textoCodigo[linha][1]][0]);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
                         if(registradores[textoCodigo[linha][1]][1] > -1)
