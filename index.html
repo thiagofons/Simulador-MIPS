@@ -26,16 +26,29 @@
         <div class="table-container">
             <table class="tab-diagrama" id="diagrama">
                 <tr id="tab-cabecalho"></tr>
+
+                
             </table>
         </div>
 
         <div class="sidebar">
+            <button class="prox-instrucao" onclick="passaCiclo()">
+                <i class="fa fa-arrow-right"></i>
+            </button>
             <table class="banco" id="banco-reg"></table>
             <table class="banco" id="memoria"></table>
         </div>
         
-        <!-- Testar entrada de codigo -->
+        <!-- Entrada de codigo -->
         <div class="inserir-container">
+            <div class="stalls">
+                <label for="">gerar stalls</label>
+                <div class="stalls-inputs">
+                    <input type="radio" name="stalls" value="sim"><label for="">sim</label>
+                    <input type="radio" name="stalls" value="nao" checked><label for="">não</label>
+                </div>
+                
+            </div>
             <textarea name="codigo" id="codigo" cols="30" rows="10" placeholder="Insira o código aqui..."></textarea>
             <button id="submit" class="btn" onclick="submit()">Executar</button>
             <button id="exit" class="btn" onclick="fecharInserir()">Sair</button>

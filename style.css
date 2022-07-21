@@ -8,7 +8,8 @@
     --pale-silver: #c5c0be;
     --white: #FFFFFF;
     --asparagus: #8CAE68;
-    --maximum-green: #60992D; 
+    --light-green:  rgba(140, 174, 104, 50%);
+    --dark-green: rgba(88, 148, 24, 0.75);
 }
 
 /* Styles */
@@ -78,7 +79,7 @@ header h1 a {
     background-color: var(--asparagus);
 }
 #inserir-codigo:active {
-    background-color: var(--maximum-green);
+    background-color: var(--dark-green);
 }
 
 main {
@@ -97,6 +98,34 @@ main {
     overflow: scroll;
     max-height: 90vh;
     margin-bottom: 1rem;
+}
+
+.prox-instrucao {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--asparagus);
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.exibir {
+    display: flex;
+}
+
+.prox-instrucao:hover {
+    cursor: pointer;
+    background-color: var(--light-green);
+}
+.prox-instrucao:active {
+    background-color: var(--dark-green);
 }
 
 /* Diagrama de execução */
@@ -166,6 +195,12 @@ main {
 }
 
 /* Insercao de codigo */
+.options-container {
+    width: 15rem;
+    border-bottom: 1px solid black;
+}
+
+
 .inserir-container {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgba(0, 0, 0, 50%);
@@ -216,7 +251,23 @@ main {
     background-color:  rgba(117, 189, 39, 0.75);
     color: white;
 }
+
+.stalls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.stalls-inputs input {
+    margin-left: 1rem;    
+}
+.stalls-inputs input:hover {
+    cursor: pointer;
+}
+
+
 #exit {
+
     margin-top: 1rem;
     background-color: rgba(255, 0, 0, 25%);
 }

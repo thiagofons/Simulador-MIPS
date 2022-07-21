@@ -7,6 +7,7 @@ const bancoReg = document.getElementById("banco-reg");
 const memoria = document.getElementById("memoria");
 
 const diagrama = document.getElementById("diagrama");
+const proxInstrucao = document.querySelector(".prox-instrucao");
 
 window.onload = () => {
     carregarBancoRegistradores();
@@ -95,9 +96,23 @@ function submit() {
     textoCodigo = document.getElementById("codigo").value.split("\n").filter(checkLinhas);
     textoOriginal = [...textoCodigo];
     textoCodigo = processaLinhas(textoCodigo);
+
+    // Verificar se vai ser necessario gerar stalls
+    const gerarStalls = document.getElementsByName("stalls");
+    for(let i = 0; i < gerarStalls.length; i++) {
+        if(gerarStalls[i].checked) {
+            if(gerarStalls[i].value === "sim") 
+                stallJump = true;
+            else 
+                stallJump = false;
+            break;
+        }   
+    }
+
     leLabel();
     document.getElementById("codigo").value = "";
     inserirContainer.classList.toggle("inserir-container-on");
+    proxInstrucao.classList.add("exibir");
 }
 
 function fecharInserir() {
