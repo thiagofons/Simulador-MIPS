@@ -232,7 +232,7 @@ function passaCiclo() {
     if(bolha > 0) {
         let inicio = `
         <tr class="tab-linha instrucao" id = "${ciclo}">
-        <td class="nome-instrucao" id = "codigo${ciclo}">sll $zero, $zero, 0</td>`
+        <td class="nome-instrucao bolha" id = "codigo${ciclo}">sll $zero, $zero, 0</td>`
 
         for(let espaco = 0; espaco < ciclo - 1; espaco++) {
             inicio += `<td></td>`;
@@ -302,6 +302,7 @@ function passaCiclo() {
                     }
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         bolha = 1;
                     }
                     break;
@@ -316,6 +317,7 @@ function passaCiclo() {
                     }
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         bolha = 1;
                     }
                     break;
@@ -344,6 +346,8 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + registradores[textoCodigo[linha][3]][0], 3);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
+
                         if(registradores[textoCodigo[linha][2]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
@@ -357,6 +361,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] + parseInt(textoCodigo[linha][3]), 3);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         bolha = registradores[textoCodigo[linha][2]][1];
                         linha--;
                     }
@@ -367,6 +372,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] & registradores[textoCodigo[linha][3]][0], 3);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         if(registradores[textoCodigo[linha][2]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
@@ -381,6 +387,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], memoriaDados[dec2hex(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0])], 4);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         if(registradores[textoCodigo[linha][1]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
@@ -394,6 +401,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] | registradores[textoCodigo[linha][3]][0], 3);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         if(registradores[textoCodigo[linha][2]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
@@ -407,6 +415,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] << parseInt(textoCodigo[linha][2]), 3)
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         bolha = registradores[textoCodigo[linha][2]][1];
                         linha--;
                     }
@@ -417,6 +426,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][1]][0] >> parseInt(textoCodigo[linha][2]), 3)
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         bolha = registradores[textoCodigo[linha][2]][1];
                         linha--;
                     }
@@ -428,6 +438,7 @@ function passaCiclo() {
                         insereMemoria(dec2hex(parseInt(textoCodigo[linha][2]) + registradores[textoCodigo[linha][3]][0]), registradores[textoCodigo[linha][1]][0]);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         if(registradores[textoCodigo[linha][1]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
@@ -441,6 +452,7 @@ function passaCiclo() {
                         atualizaRegistrador(textoCodigo[linha][1], registradores[textoCodigo[linha][2]][0] - registradores[textoCodigo[linha][3]][0], 3);
                     else {
                         document.getElementById(`codigo${ciclo}`).innerHTML = "sll $zero, $zero, 0"
+                        document.getElementById(`codigo${ciclo}`).classList.add("bolha");
                         if(registradores[textoCodigo[linha][2]][1] > -1)
                             bolha = registradores[textoCodigo[linha][2]][1];
                         else
