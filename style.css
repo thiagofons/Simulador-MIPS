@@ -279,8 +279,11 @@ main {
     background-color: rgba(255, 0, 0, 75%);
 }
 
-/* Integrantes do grupo */
-
+/* Sobre */
+#sobre {
+    justify-content: left;
+    flex-direction: column;
+}
 
 
 /* Scrollbar */
